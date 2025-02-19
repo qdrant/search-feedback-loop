@@ -158,7 +158,7 @@ def main():
                 top_1_hit_with_discovery += 1
         
     print(f"On {no_reordering} queries out of {queries_amount} top-3 rescoring with an \"agent\" didn't change top-1 result")
-
+    print()
     print(f"Quality naive (top-10 reordered) on top-1 hits: {top_1_hit_naive / queries_amount}")
     print(f"Quality with discovery on top-1 hits: {top_1_hit_with_discovery / queries_amount}")
 

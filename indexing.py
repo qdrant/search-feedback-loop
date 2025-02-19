@@ -46,6 +46,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset_path", type=str, required=True)
     parser.add_argument("--total-points-in-dataset", type=int, default=3600)
+    parser.add_argument("--collection-name", type=str, default="discovery_agents")
     args = parser.parse_args()
 
     config = configparser.ConfigParser()
@@ -55,9 +56,9 @@ def main():
   
     qdrant_client = QdrantClient(url=cloud_url, api_key=cloud_api_key)
 
-    if not qdrant_client.collection_exists("discovery_agents"):
+    if not qdrant_client.collection_exists(args.collection_name):
         qdrant_client.create_collection(
-            collection_name="discovery_agents",
+            collection_name=args.collection_name,
             vectors_config={
                 "smaller": models.VectorParams(
                     size=384,
@@ -71,7 +72,7 @@ def main():
         )
 
     qdrant_client.upload_points(
-        collection_name="discovery_agents",
+        collection_name=args.collection_name,
         points=tqdm.tqdm(
             read_points(args.dataset_path),
             total=args.total_points_in_dataset,
