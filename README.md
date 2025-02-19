@@ -8,8 +8,8 @@ Better Agentic RAG results.
 - `all-MiniLM-L6-v2` as main model;
 - `mxbai-embed-large-v1` as agent;
 - BEIR datasets for eval;
-- comparing top-1 hits (only top-1 matters for RAG) for each query: `hits/queries_amount`
-
+- `precision@1` metric
+  
 ### Expensive agent scenario
 top-10 results of `all-MiniLM-L6-v2` reranked with `mxbai-embed-large-v1`
 
